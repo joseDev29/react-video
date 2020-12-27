@@ -55,3 +55,22 @@ ul:hover {
   margin-right: 8px;
   width: 40px;
 }
+
+.header__login-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.header__login-link:hover {
+  text-decoration: underline;
+}
+
+.user-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.greenHeader {
+  background-color: #21c08b;
+}

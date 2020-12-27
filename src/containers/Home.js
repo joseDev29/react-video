@@ -1,61 +1,66 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
+import React from "react";
+
+import { connect } from "react-redux";
+
+//Components
 import Search from "../components/Search";
 import Category from "../components/Category";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItem";
 
+//Custom hooks
 import useInitialState from "../hooks/useInitialState";
 
+//Styles
 import "../assets/styles/App.scss";
-import Footer from "../components/Footer";
 
-const App = () => {
-  const [videos, setVideos] = useInitialState(
-    "http://localhost:3000/initialState",
-    []
-  );
+const Home = ({ mylist, trends, originals }) => {
+  //const [videos] = useInitialState("http://localhost:3000/initialState", []);
 
   return (
     <>
-      <Header />
       <Search />
 
-      {!Object.keys(videos).length && <h1>Cargando...</h1>}
-
-      {videos.mylist && videos.mylist.length ? (
+      {mylist.length >= 0 ? (
         <Category>
           <Carousel>
-            {videos.mylist.map((video) => (
-              <CarouselItem key={video.id} data={video} />
+            {mylist.map((video) => (
+              //Al enviarse una prop sin valor, se toma como un boolean:true
+              <CarouselItem key={video.id} data={video} isList />
             ))}
           </Carousel>
         </Category>
       ) : null}
 
-      {videos.trends && videos.trends.length && (
+      {trends.length && (
         <Category title="Tendencias">
           <Carousel>
-            {videos.trends.map((video) => (
+            {trends.map((video) => (
               <CarouselItem key={video.id} data={video} />
             ))}
           </Carousel>
         </Category>
       )}
 
-      {videos.originals && videos.originals.length && (
+      {originals.length && (
         <Category title="Originales ReactVideo">
           <Carousel>
-            {videos.originals.map((video) => (
+            {originals.map((video) => (
               <CarouselItem key={video.id} data={video} />
             ))}
           </Carousel>
         </Category>
       )}
-
-      <Footer />
     </>
   );
 };
 
-export default App;
+const mapStateToPros = (state) => {
+  return {
+    mylist: state.mylist,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
+
+export default connect(mapStateToPros, null)(Home);

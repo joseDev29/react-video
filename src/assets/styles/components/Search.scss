@@ -12,7 +12,11 @@
   font-size: 25px;
 }
 
-.input {
+::placeholder {
+  color: white;
+}
+
+.input-search {
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid white;
   border-radius: 25px;
@@ -24,8 +28,4 @@
   outline: none;
   padding: 0px 20px;
   width: 70%;
-}
-
-::placeholder {
-  color: white;
 }
