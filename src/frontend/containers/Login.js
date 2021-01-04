@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { loginRequest } from "../actions";
+import { loginUser } from "../actions";
 
 import googleIcon from "../assets/images/google-icon.png";
 import twitterIcon from "../assets/images/twitter-icon.png";
@@ -24,8 +24,8 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginRequest(form);
-    props.history.push("/");
+    props.loginUser(form, "/");
+    //props.history.push("/");
   };
 
   return (
@@ -75,7 +75,7 @@ const Login = (props) => {
 };
 
 const mapsDispatchToProps = {
-  loginRequest,
+  loginUser,
 };
 
 export default connect(null, mapsDispatchToProps)(Login);

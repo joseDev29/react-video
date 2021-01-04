@@ -9,18 +9,25 @@ import Register from "../containers/Register";
 import NotFound from "../containers/NotFound";
 import Player from "../containers/Player";
 
-const App = () => (
-  <BrowserRouter>
-    <Layout>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/player/:id" component={Player} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
-  </BrowserRouter>
-);
+const App = (props) => {
+  const { isLogged } = props;
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Switch>
+          <Route exact path="/" component={isLogged ? Home : Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route
+            exact
+            path="/player/:id"
+            component={isLogged ? Player : Login}
+          />
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+    </BrowserRouter>
+  );
+};
 
 export default App;

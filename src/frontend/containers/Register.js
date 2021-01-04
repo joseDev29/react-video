@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { registerRequest } from "../actions";
+import { registerUser } from "../actions";
 import { Link } from "react-router-dom";
 import "../assets/styles/Register.scss";
 
@@ -20,8 +20,8 @@ const Register = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.registerRequest(form);
-    props.history.push("/");
+    props.registerUser(form, "/login");
+    //props.history.push("/");
   };
   return (
     <section className="register">
@@ -60,6 +60,6 @@ const Register = (props) => {
 };
 
 const mapDispatchToProps = {
-  registerRequest,
+  registerUser,
 };
 export default connect(null, mapDispatchToProps)(Register);

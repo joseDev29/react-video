@@ -12,7 +12,12 @@ import "../assets/styles/components/Header.scss";
 const Header = (props) => {
   const { user } = props;
   const handleLogout = () => {
+    document.cookie = "email=";
+    document.cookie = "name=";
+    document.cookie = "id=";
+    document.cookie = "token=";
     props.logoutRequest({});
+    window.location.href = "/login";
   };
   const headerColor =
     useLocation().pathname === "/register" ||
@@ -40,9 +45,9 @@ const Header = (props) => {
                 <Link to="/">{user.name || "Username"}</Link>
               </li>
               <li>
-                <a href="#logout" onClick={handleLogout}>
+                <button type="button" onClick={handleLogout}>
                   Cerrar Sesión
-                </a>
+                </button>
               </li>
             </ul>
           </>
