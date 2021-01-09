@@ -157,7 +157,6 @@ const renderApp = async (req, res) => {
 
 //Se capturan todas las request type get
 app.get("*", renderApp);
-
 app.post("/auth/sign-in", async function (req, res, next) {
   passport.authenticate("basic", function (error, data) {
     try {
